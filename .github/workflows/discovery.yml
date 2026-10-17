@@ -1,32 +1,27 @@
-name: Four-hour DEX discovery
 
+name: Four-hour DEX discovery
 on:
   schedule:
     - cron: '23 */4 * * *'
   workflow_dispatch:
-
 permissions:
   contents: write
-
 concurrency:
   group: radar-data
   cancel-in-progress: false
-
 jobs:
   discover:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
       - name: Collect public DEX data
-        run: python discovery.py
-
+        run: |
+          python discovery.py
+          python validation41.py collect
       - name: Save database
         run: |
           git config user.name 'github-actions[bot]'
