@@ -2,7 +2,7 @@
 import argparse, collections, datetime as dt, email.utils, hashlib, html, json, math, os, re, sqlite3, urllib.request, urllib.parse, xml.etree.ElementTree as ET
 from pathlib import Path
 
-ROOT=Path(__file__).resolve().parents[1]
+ROOT=Path(__file__).resolve().parents
 DB=ROOT/'data'/'radar.sqlite3'
 FEEDS=[('reddit_cryptocurrency','https://www.reddit.com/r/CryptoCurrency/.rss'),('reddit_memecoins','https://www.reddit.com/r/memecoins/.rss'),('reddit_cryptomoonshots','https://www.reddit.com/r/CryptoMoonShots/.rss'),('google_news','https://news.google.com/rss/search?q=cryptocurrency+memecoin+token+launch&hl=en-US&gl=US&ceid=US:en')]
 POS=('launch','listing','partnership','adoption','viral','breakout','community','airdrop','trending','growth','milestone')
