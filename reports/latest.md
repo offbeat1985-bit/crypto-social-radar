@@ -53,3 +53,13 @@ No qualifying signals recorded.
 - Agent A rejected by B: n=0; insufficient observations or BTC benchmark
 Scores are not probabilities. BTC is a benchmark, not a matched random-signal control. Small samples cannot establish predictive skill.
 
+
+## DEX discovery (experimental, not trading signals)
+
+- dexscreener: ok, 1 runs
+- geckoterminal: ok, 1 runs
+- pair_collection: ok, 1 runs
+- Pair snapshots this week: 58
+- Discovery scores are exploratory, not calibrated probabilities. One 24h volume measurement is not a 4h volume measurement.
+- Candidate and security statuses are NOT investment recommendations; unverified means unverified.
+- No eligible reviewed candidates yet.
