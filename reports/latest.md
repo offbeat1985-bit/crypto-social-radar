@@ -11,6 +11,15 @@ Period: 2026-10-10 to 2026-10-17 (UTC)
 ## Collection limitations
 - 2026-10-17: ["reddit_memecoins: HTTPError: HTTP Error 429: Too Many Requests", "reddit_cryptomoonshots: HTTPError: HTTP Error 429: Too Many Requests"]
 
+## Source health and coverage
+- coindesk: ok, 25 items
+- cointelegraph: ok, 30 items
+- decrypt: ok, 57 items
+- google_news: ok, 100 items
+- reddit_cryptocurrency: ok, 25 items
+- reddit_cryptomoonshots: error, 0 items (HTTPError: HTTP Error 429: Too Many Requests)
+- reddit_memecoins: error, 0 items (HTTPError: HTTP Error 429: Too Many Requests)
+
 ## Signals and adversarial checks
 No qualifying signals recorded.
 
@@ -26,10 +35,10 @@ No qualifying signals recorded.
 
 ## Forward-only price validation
 
-- Latest price feed: 2026-10-17 / ok / 100 coin prices; 1 signal assets
+- Latest price feed: 2026-10-17 / ok / coingecko: 100 coin prices; 1 signal assets; 0 DEX contracts
 - Saved price snapshots: 100
 - Matched asset predictions: 0
-- Only uniquely matched CoinGecko top-100 symbols are evaluated; no backfilled entries.
+- Top-100 ticker matches or Ethereum contract-address DEX matches only; no backfilled entries. CoinPaprika is an outage fallback, not an interchangeable historical ID.
 ### 1-day validation
 - Agent A candidates: n=0; insufficient observations or BTC benchmark
 - Agent B supported: n=0; insufficient observations or BTC benchmark
