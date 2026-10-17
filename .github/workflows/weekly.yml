@@ -1,3 +1,4 @@
+
 name: Weekly research report
 
 on:
@@ -29,6 +30,7 @@ jobs:
         run: |
           python radar.py weekly
           python dex_report.py
+          python validation41.py report
 
       - name: Commit report
         run: |
