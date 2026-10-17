@@ -5,7 +5,7 @@ Period: 2026-10-10 to 2026-10-17 (UTC)
 - Candidate-day signals: 0
 - Independently supported signals: 0
 - Verified 1/3/7-day price outcomes: 0
-- **Forecast quality: NOT MEASURABLE until verified outcome data and baselines are available.**
+- **Forecast quality: see forward-only price validation below; no skill claim without adequate samples and controls.**
 - No trading. Scores are not probabilities.
 
 ## Collection limitations
@@ -23,3 +23,24 @@ No qualifying signals recorded.
 - Public RSS does not cover all coins or all social media.
 - No historical price data ingestion is included, so this version cannot demonstrate profitable prediction.
 - A GitHub scheduled job is not guaranteed to run at the exact time; free quotas and platform terms may change.
+
+## Forward-only price validation
+
+- Latest price feed: 2026-10-17 / ok / 100 coin prices; 1 signal assets
+- Saved price snapshots: 100
+- Matched asset predictions: 0
+- Only uniquely matched CoinGecko top-100 symbols are evaluated; no backfilled entries.
+### 1-day validation
+- Agent A candidates: n=0; insufficient observations or BTC benchmark
+- Agent B supported: n=0; insufficient observations or BTC benchmark
+- Agent A rejected by B: n=0; insufficient observations or BTC benchmark
+### 3-day validation
+- Agent A candidates: n=0; insufficient observations or BTC benchmark
+- Agent B supported: n=0; insufficient observations or BTC benchmark
+- Agent A rejected by B: n=0; insufficient observations or BTC benchmark
+### 7-day validation
+- Agent A candidates: n=0; insufficient observations or BTC benchmark
+- Agent B supported: n=0; insufficient observations or BTC benchmark
+- Agent A rejected by B: n=0; insufficient observations or BTC benchmark
+Scores are not probabilities. BTC is a benchmark, not a matched random-signal control. Small samples cannot establish predictive skill.
+
