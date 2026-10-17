@@ -56,10 +56,30 @@ Scores are not probabilities. BTC is a benchmark, not a matched random-signal co
 
 ## DEX discovery (experimental, not trading signals)
 
-- dexscreener: ok, 1 runs
-- geckoterminal: ok, 1 runs
-- pair_collection: ok, 1 runs
-- Pair snapshots this week: 58
+- dexscreener: ok, 2 runs
+- geckoterminal: ok, 2 runs
+- pair_collection: ok, 2 runs
+- Pair snapshots this week: 115
 - Discovery scores are exploratory, not calibrated probabilities. One 24h volume measurement is not a 4h volume measurement.
 - Candidate and security statuses are NOT investment recommendations; unverified means unverified.
 - No eligible reviewed candidates yet.
+
+## V4.1 forward-only shadow evaluation (frozen rules)
+
+- Not financial advice; no orders, no automatic weight changes.
+- First observation per asset per UTC day; outcomes use same DEX pair and 1/3/7-day targets.
+- Controls are a deterministic 20% sample of eligible watch-only assets, not matched random controls.
+- Missing quotes and delistings are separately counted; ignoring them biases returns upward.
+- 24h volume is a rolling 24h measure, not a four-hour acceleration measure.
+- Frozen predictions: 9
+- signal cohort: 6 predictions
+  - 1d: evaluated=0; missing=0; insufficient observations
+  - 3d: evaluated=0; missing=0; insufficient observations
+  - 7d: evaluated=0; missing=0; insufficient observations
+- control cohort: 3 predictions
+  - 1d: evaluated=0; missing=0; insufficient observations
+  - 3d: evaluated=0; missing=0; insufficient observations
+  - 7d: evaluated=0; missing=0; insufficient observations
+- Agent B independently records supported/unconfirmed/rejected; unverified security is not treated as safe.
+- Agent A candidate / Agent B unconfirmed: 6
+- Agent A watch_only / Agent B unconfirmed: 3
