@@ -57,27 +57,29 @@ Scores are not probabilities. BTC is a benchmark, not a matched random-signal co
 
 ## DEX discovery (experimental, not trading signals)
 
-- dexscreener: ok, 7 runs
-- geckoterminal: ok, 7 runs
-- pair_collection: ok, 7 runs
-- Pair snapshots this week: 470
+- dexscreener: ok, 10 runs
+- geckoterminal: ok, 10 runs
+- pair_collection: ok, 10 runs
+- Pair snapshots this week: 807
+- Unique tokens from dexscreener: 57
+- Unique tokens from geckoterminal: 73
 - Discovery scores are exploratory, not calibrated probabilities. One 24h volume measurement is not a 4h volume measurement.
 - Candidate and security statuses are NOT investment recommendations; unverified means unverified.
-- 2026-10-18T08:50:38+00:00 solana CBUCKS: needs_review, score 100.0; security not independently verified
-- 2026-10-18T08:50:38+00:00 solana ELON: needs_review, score 100.0; security not independently verified
-- 2026-10-18T08:50:38+00:00 solana iMolest : needs_review, score 100.0; security not independently verified
-- 2026-10-18T08:50:38+00:00 solana CAPE: needs_review, score 100.0; security not independently verified
-- 2026-10-18T08:50:38+00:00 solana MINTER: needs_review, score 100.0; security not independently verified
-- 2026-10-18T08:50:38+00:00 robinhood SURPLUS: needs_review, score 100.0; security not independently verified
-- 2026-10-18T08:50:38+00:00 robinhood OWN: needs_review, score 100.0; security not independently verified
-- 2026-10-18T08:50:38+00:00 ethereum CLAUDIA: needs_review, score 100.0; security not independently verified
-- 2026-10-18T08:50:38+00:00 bsc DAWG: needs_review, score 100.0; security not independently verified
-- 2026-10-18T08:50:38+00:00 bsc priceless: needs_review, score 100.0; security not independently verified
-- 2026-10-18T04:52:26+00:00 solana YILONGMA: needs_review, score 100.0; security not independently verified
-- 2026-10-18T04:52:26+00:00 solana GLITCH: needs_review, score 100.0; security not independently verified
-- 2026-10-18T04:52:26+00:00 solana Chaton: needs_review, score 100.0; security not independently verified
-- 2026-10-18T04:52:26+00:00 solana STATE?: needs_review, score 100.0; security not independently verified
-- 2026-10-18T04:52:26+00:00 solana FTR: needs_review, score 100.0; security not independently verified
+- 2026-10-18T16:50:02+00:00 solana MOMO: needs_review, score 100.0; security not independently verified
+- 2026-10-18T16:50:02+00:00 solana CBUCKS: needs_review, score 100.0; security not independently verified
+- 2026-10-18T16:50:02+00:00 solana texcat: needs_review, score 100.0; security not independently verified
+- 2026-10-18T16:50:02+00:00 solana ELON: needs_review, score 100.0; security not independently verified
+- 2026-10-18T16:50:02+00:00 solana STATE?: needs_review, score 100.0; security not independently verified
+- 2026-10-18T16:50:02+00:00 solana CAPE: needs_review, score 100.0; security not independently verified
+- 2026-10-18T16:50:02+00:00 solana bwigitte: needs_review, score 100.0; security not independently verified
+- 2026-10-18T16:50:02+00:00 solana Dip: needs_review, score 100.0; security not independently verified
+- 2026-10-18T16:50:02+00:00 ethereum CLAUDIA: needs_review, score 100.0; security not independently verified
+- 2026-10-18T16:50:02+00:00 robinhood SURPLUS: needs_review, score 88.3; security not independently verified
+- 2026-10-18T12:57:06+00:00 solana texcat: needs_review, score 100.0; security not independently verified
+- 2026-10-18T12:57:06+00:00 solana GLITCH: needs_review, score 100.0; security not independently verified
+- 2026-10-18T12:57:06+00:00 solana STATE?: needs_review, score 100.0; security not independently verified
+- 2026-10-18T12:57:06+00:00 robinhood OWN: needs_review, score 100.0; security not independently verified
+- 2026-10-18T12:57:06+00:00 ethereum CLAUDIA: needs_review, score 100.0; security not independently verified
 
 ## V4.1 forward-only shadow evaluation (frozen rules)
 
@@ -86,15 +88,15 @@ Scores are not probabilities. BTC is a benchmark, not a matched random-signal co
 - Controls are a deterministic 20% sample of eligible watch-only assets, not matched random controls.
 - Missing quotes and delistings are separately counted; ignoring them biases returns upward.
 - 24h volume is a rolling 24h measure, not a four-hour acceleration measure.
-- Frozen predictions: 42
-- signal cohort: 30 predictions
+- Frozen predictions: 55
+- signal cohort: 39 predictions
   - 1d: evaluated=0; missing=0; insufficient observations
   - 3d: evaluated=0; missing=0; insufficient observations
   - 7d: evaluated=0; missing=0; insufficient observations
-- control cohort: 12 predictions
+- control cohort: 16 predictions
   - 1d: evaluated=0; missing=0; insufficient observations
   - 3d: evaluated=0; missing=0; insufficient observations
   - 7d: evaluated=0; missing=0; insufficient observations
-- Agent B independently records supported/unconfirmed/rejected; unverified security is not treated as safe.
-- Agent A candidate / Agent B unconfirmed: 30
-- Agent A watch_only / Agent B unconfirmed: 12
+- Agent B market-only support does not mean contract safety; unverified remains unverified.
+- Agent A candidate / Agent B unconfirmed: 39
+- Agent A watch_only / Agent B unconfirmed: 16
