@@ -54,8 +54,9 @@ def assess(liq, vol, buys, sells, age, risk):
     if buys + sells < 100: reasons.append('fewer than 100 transactions in 24h')
     if age is None or age < 24: reasons.append('pool age under 24h or unknown')
     if risk == 'high_risk': reasons.append('GoPlus high-risk finding')
-    elif risk != 'verified_low_risk': reasons.append('contract safety not independently verified')
-    b = 'rejected' if risk == 'high_risk' else ('supported' if not reasons else 'unconfirmed')
+    elif risk != 'verified_low_risk': reasons.append('contract safety unverified; separate from market assessment')
+    market_ok = liq >= 100000 and buys+sells >= 100 and age is not None and age >= 24
+    b = 'rejected' if risk == 'high_risk' else ('supported_market_only' if market_ok else 'unconfirmed')
     return a, b, ar, '; '.join(reasons) or 'passed defined review checks'
 
 
@@ -86,7 +87,7 @@ def collect(c):
         c.execute('''INSERT OR IGNORE INTO v41_predictions VALUES
           (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
           (pid,ts,day,chain,contract,pair,symbol,price,liq,vol,buys,sells,age,
-           a,b,ar,br,cohort,'v4.1-frozen-1'))
+           a,b,ar,br,cohort,'v4.2-market-review-1'))
         n += 1
     return n
 
@@ -143,7 +144,7 @@ def report(c):
               WHERE p.cohort=? AND e.horizon=? AND e.status='missing' ''',(cohort,h)).fetchone()[0]
             lines.append(f'  - {h}d: evaluated={count}; missing={missing}; '+
                          (f'mean={avg:+.2f}%; positive={positive*100:.1f}%' if count else 'insufficient observations'))
-    lines.append('- Agent B independently records supported/unconfirmed/rejected; unverified security is not treated as safe.')
+    lines.append('- Agent B market-only support does not mean contract safety; unverified remains unverified.')
     for a,b,n in c.execute('SELECT agent_a,agent_b,count(*) FROM v41_predictions GROUP BY agent_a,agent_b ORDER BY count(*) DESC'):
         lines.append(f'- Agent A {a} / Agent B {b}: {n}')
     return '\n'.join(lines)+'\n'

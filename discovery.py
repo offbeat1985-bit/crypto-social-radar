@@ -10,7 +10,8 @@ def init(c):
  c.executescript('''CREATE TABLE IF NOT EXISTS dex_snapshots(ts TEXT,chain TEXT,contract TEXT,pair TEXT,symbol TEXT,price REAL,liquidity REAL,volume24 REAL,buys24 INTEGER,sells24 INTEGER,age_hours REAL,source TEXT,PRIMARY KEY(ts,chain,contract));
  CREATE TABLE IF NOT EXISTS dex_discovery(ts TEXT,chain TEXT,contract TEXT,symbol TEXT,score REAL,status TEXT,reason TEXT,PRIMARY KEY(ts,chain,contract));
  CREATE TABLE IF NOT EXISTS dex_risks(day TEXT,chain TEXT,contract TEXT,status TEXT,detail TEXT,PRIMARY KEY(day,chain,contract));
- CREATE TABLE IF NOT EXISTS dex_source_runs(ts TEXT,source TEXT,status TEXT,items INTEGER,detail TEXT,PRIMARY KEY(ts,source));''')
+ CREATE TABLE IF NOT EXISTS dex_source_runs(ts TEXT,source TEXT,status TEXT,items INTEGER,detail TEXT,PRIMARY KEY(ts,source));
+ CREATE TABLE IF NOT EXISTS dex_provenance(ts TEXT,chain TEXT,contract TEXT,source TEXT,PRIMARY KEY(ts,chain,contract,source));''')
 def mark(c,ts,source,status,count,detail=''):
  c.execute('INSERT OR REPLACE INTO dex_source_runs VALUES (?,?,?,?,?)',(ts,source,status,count,detail[:220]))
 def pairs_from_dex():
@@ -31,7 +32,10 @@ def gecko_pools():
  for network in ('eth','solana','base','bsc'):
   data=get(f'https://api.geckoterminal.com/api/v2/networks/{network}/new_pools?page=1')
   if not isinstance(data.get('data'),list):raise ValueError('unexpected GeckoTerminal response')
-  out.extend((network,p['attributes'].get('base_token_address')) for p in data['data'] if p.get('attributes',{}).get('base_token_address'))
+  for pool in data['data']:
+   ident=(((pool.get('relationships') or {}).get('base_token') or {}).get('data') or {}).get('id','')
+   if ident.startswith(network+'_'):
+    out.append((network,ident[len(network)+1:]))
  return out
 CHAIN={'eth':'ethereum','solana':'solana','base':'base','bsc':'bsc'}
 def normalize(pair,chain,contract,ts):
@@ -62,16 +66,24 @@ def run():
  ts=dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat();day=ts[:10]
  DB.parent.mkdir(exist_ok=True,parents=True);c=sqlite3.connect(DB);init(c)
  candidates=[]
+ provenance={}
  for name,fn in [('dexscreener',pairs_from_dex),('geckoterminal',gecko_pools)]:
   try:
-   rows=fn();candidates.extend((CHAIN.get(chain,chain),contract) for chain,contract in rows)
+   rows=fn()
+   for chain,contract in rows:
+    key=(CHAIN.get(chain,chain),contract)
+    candidates.append(key)
+    provenance.setdefault((key[0],str(key[1]).lower()),set()).add(name)
    mark(c,ts,name,'ok',len(rows))
   except Exception as e:mark(c,ts,name,'error',0,f'{type(e).__name__}: {e}')
  # Keep previously forecast assets observable even if they disappear from trending feeds.
  if c.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='v41_predictions'").fetchone():
-  tracked=c.execute('SELECT chain,contract FROM v41_predictions WHERE day>=? GROUP BY chain,contract ORDER BY max(day) DESC LIMIT 40',((dt.datetime.now(dt.timezone.utc).date()-dt.timedelta(days=9)).isoformat(),)).fetchall()
+  tracked=c.execute('SELECT chain,contract FROM v41_predictions WHERE day>=? GROUP BY chain,contract ORDER BY max(day) DESC',((dt.datetime.now(dt.timezone.utc).date()-dt.timedelta(days=9)).isoformat(),)).fetchall()
   candidates=tracked+candidates
- candidates=list(dict.fromkeys((chain,contract) for chain,contract in candidates if chain and contract))[:100]
+ candidates=list(dict.fromkeys((chain,contract) for chain,contract in candidates if chain and contract))
+ tracked_count=len(tracked) if 'tracked' in locals() else 0
+ if tracked_count>200:raise RuntimeError('More than 200 tracked assets: split scan into batches')
+ candidates=candidates[:200]
  successes=0
  for chain,contract in candidates:
   try:
@@ -79,7 +91,15 @@ def run():
    normalized=[normalize(p,chain,contract,ts) for p in pairs]
    normalized=[x for x in normalized if x]
    if not normalized:continue
-   best=max(normalized,key=lambda x:x[6]);c.execute('INSERT OR IGNORE INTO dex_snapshots VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',best)
+   original=None
+   if c.execute("SELECT 1 FROM sqlite_master WHERE name='v41_predictions'").fetchone():
+    prev=c.execute('SELECT pair FROM v41_predictions WHERE chain=? AND contract=? ORDER BY observed_at LIMIT 1',(chain,contract.lower())).fetchone()
+    if prev:original=prev[0]
+   same=[x for x in normalized if x[3]==original] if original else []
+   best=max(same or normalized,key=lambda x:x[6])
+   c.execute('INSERT OR IGNORE INTO dex_snapshots VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',best)
+   for source in provenance.get((chain,contract.lower()),()):
+    c.execute('INSERT OR IGNORE INTO dex_provenance VALUES (?,?,?,?)',(ts,chain,contract.lower(),source))
    _,_,_,_,symbol,price,liq,vol,buys,sells,age,_=best
    old=c.execute('SELECT price,ts FROM dex_snapshots WHERE chain=? AND contract=? AND ts<? ORDER BY ts DESC LIMIT 1',(chain,contract.lower(),ts)).fetchone()
    momentum=(price/old[0]-1) if old and old[0]>0 and 2 <= (dt.datetime.fromisoformat(ts)-dt.datetime.fromisoformat(old[1])).total_seconds()/3600 <= 8 else None

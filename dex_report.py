@@ -13,6 +13,9 @@ for source,status,count in c.execute('SELECT source,status,count(*) FROM dex_sou
  lines.append(f'- {source}: {status}, {count} runs')
 count=c.execute('SELECT count(*) FROM dex_snapshots WHERE ts>=?',(cutoff,)).fetchone()[0]
 lines.append(f'- Pair snapshots this week: {count}')
+if c.execute("SELECT 1 FROM sqlite_master WHERE name='dex_provenance'").fetchone():
+ for source,assets in c.execute('SELECT source,count(DISTINCT chain||":"||contract) FROM dex_provenance WHERE ts>=? GROUP BY source',(cutoff,)):
+  lines.append(f'- Unique tokens from {source}: {assets}')
 lines.append('- Discovery scores are exploratory, not calibrated probabilities. One 24h volume measurement is not a 4h volume measurement.')
 lines.append('- Candidate and security statuses are NOT investment recommendations; unverified means unverified.')
 rows=c.execute("SELECT ts,chain,symbol,score,status,reason FROM dex_discovery WHERE ts>=? AND status IN ('candidate','needs_review','excluded') ORDER BY ts DESC,score DESC LIMIT 15",(cutoff,)).fetchall()
