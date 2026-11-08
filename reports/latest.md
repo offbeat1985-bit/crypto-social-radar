@@ -1,5 +1,5 @@
 # Weekly Social Radar Research Report
-Period: 2026-10-25 to 2026-11-01 (UTC)
+Period: 2026-11-01 to 2026-11-08 (UTC)
 
 - Daily collection runs: 8/7 (scheduled; may be delayed or skipped)
 - Candidate-day signals: 0
@@ -9,20 +9,20 @@ Period: 2026-10-25 to 2026-11-01 (UTC)
 - No trading. Scores are not probabilities.
 
 ## Collection limitations
-- 2026-10-25: ["reddit_memecoins: HTTPError: HTTP Error 429: Too Many Requests", "reddit_cryptomoonshots: HTTPError: HTTP Error 429: Too Many Requests"]
-- 2026-10-26: ["reddit_memecoins: HTTPError: HTTP Error 429: Too Many Requests", "reddit_cryptomoonshots: HTTPError: HTTP Error 429: Too Many Requests"]
-- 2026-10-27: ["reddit_memecoins: HTTPError: HTTP Error 429: Too Many Requests", "reddit_cryptomoonshots: HTTPError: HTTP Error 429: Too Many Requests"]
-- 2026-10-28: ["reddit_memecoins: HTTPError: HTTP Error 429: Too Many Requests", "reddit_cryptomoonshots: HTTPError: HTTP Error 429: Too Many Requests"]
-- 2026-10-29: ["reddit_memecoins: HTTPError: HTTP Error 429: Too Many Requests", "reddit_cryptomoonshots: HTTPError: HTTP Error 429: Too Many Requests"]
-- 2026-10-30: ["reddit_memecoins: HTTPError: HTTP Error 429: Too Many Requests", "reddit_cryptomoonshots: HTTPError: HTTP Error 429: Too Many Requests"]
-- 2026-10-31: ["reddit_memecoins: HTTPError: HTTP Error 429: Too Many Requests", "reddit_cryptomoonshots: HTTPError: HTTP Error 429: Too Many Requests"]
 - 2026-11-01: ["reddit_memecoins: HTTPError: HTTP Error 429: Too Many Requests", "reddit_cryptomoonshots: HTTPError: HTTP Error 429: Too Many Requests"]
+- 2026-11-02: ["reddit_memecoins: HTTPError: HTTP Error 429: Too Many Requests", "reddit_cryptomoonshots: HTTPError: HTTP Error 429: Too Many Requests"]
+- 2026-11-03: ["reddit_memecoins: HTTPError: HTTP Error 429: Too Many Requests", "reddit_cryptomoonshots: HTTPError: HTTP Error 429: Too Many Requests"]
+- 2026-11-04: ["reddit_memecoins: HTTPError: HTTP Error 429: Too Many Requests", "reddit_cryptomoonshots: HTTPError: HTTP Error 429: Too Many Requests"]
+- 2026-11-05: ["reddit_memecoins: HTTPError: HTTP Error 429: Too Many Requests", "reddit_cryptomoonshots: HTTPError: HTTP Error 429: Too Many Requests"]
+- 2026-11-06: ["reddit_memecoins: HTTPError: HTTP Error 429: Too Many Requests", "reddit_cryptomoonshots: HTTPError: HTTP Error 429: Too Many Requests"]
+- 2026-11-07: ["reddit_memecoins: HTTPError: HTTP Error 429: Too Many Requests", "reddit_cryptomoonshots: HTTPError: HTTP Error 429: Too Many Requests"]
+- 2026-11-08: ["reddit_memecoins: HTTPError: HTTP Error 429: Too Many Requests", "reddit_cryptomoonshots: HTTPError: HTTP Error 429: Too Many Requests"]
 
 ## Source health and coverage
 - coindesk: ok, 25 items
 - cointelegraph: ok, 30 items
 - decrypt: ok, 39 items
-- google_news: ok, 100 items
+- google_news: ok, 46 items
 - reddit_cryptocurrency: ok, 25 items
 - reddit_cryptomoonshots: error, 0 items (HTTPError: HTTP Error 429: Too Many Requests)
 - reddit_memecoins: error, 0 items (HTTPError: HTTP Error 429: Too Many Requests)
@@ -42,8 +42,8 @@ No qualifying signals recorded.
 
 ## Forward-only price validation
 
-- Latest price feed: 2026-11-01 / ok / coingecko: 100 coin prices; 0 signal assets; 0 DEX contracts
-- Saved price snapshots: 1600
+- Latest price feed: 2026-11-08 / ok / coingecko: 100 coin prices; 0 signal assets; 0 DEX contracts
+- Saved price snapshots: 2300
 - Matched asset predictions: 0
 - Top-100 ticker matches or Ethereum contract-address DEX matches only; no backfilled entries. CoinPaprika is an outage fallback, not an interchangeable historical ID.
 ### 1-day validation
@@ -66,26 +66,26 @@ Scores are not probabilities. BTC is a benchmark, not a matched random-signal co
 - dexscreener: ok, 42 runs
 - geckoterminal: ok, 42 runs
 - pair_collection: ok, 42 runs
-- Pair snapshots this week: 6107
-- Unique tokens from dexscreener: 950
+- Pair snapshots this week: 7034
+- Unique tokens from dexscreener: 1030
 - Unique tokens from geckoterminal: 9
 - Discovery scores are exploratory, not calibrated probabilities. One 24h volume measurement is not a 4h volume measurement.
 - Candidate and security statuses are NOT investment recommendations; unverified means unverified.
-- 2026-11-01T09:06:03+00:00 solana ANTS: needs_review, score 100.0; security not independently verified
-- 2026-11-01T09:06:03+00:00 solana LARPCHECK: needs_review, score 100.0; security not independently verified
-- 2026-11-01T09:06:03+00:00 solana Bitcoin: needs_review, score 100.0; security not independently verified
-- 2026-11-01T09:06:03+00:00 solana jeff: needs_review, score 100.0; security not independently verified
-- 2026-11-01T09:06:03+00:00 solana WASTED: needs_review, score 100.0; security not independently verified
-- 2026-11-01T09:06:03+00:00 solana Leverhedge: needs_review, score 100.0; security not independently verified
-- 2026-11-01T09:06:03+00:00 solana CHOO: needs_review, score 100.0; security not independently verified
-- 2026-11-01T09:06:03+00:00 solana DacityCoin: needs_review, score 100.0; security not independently verified
-- 2026-11-01T09:06:03+00:00 solana NETWORK: needs_review, score 100.0; security not independently verified
-- 2026-11-01T09:06:03+00:00 solana BLOB: needs_review, score 100.0; security not independently verified
-- 2026-11-01T09:06:03+00:00 solana tipr: needs_review, score 100.0; security not independently verified
-- 2026-11-01T09:06:03+00:00 solana CATPAD: needs_review, score 100.0; security not independently verified
-- 2026-11-01T09:06:03+00:00 robinhood LOBIN: needs_review, score 100.0; security not independently verified
-- 2026-11-01T09:06:03+00:00 robinhood DODO: needs_review, score 100.0; security not independently verified
-- 2026-11-01T09:06:03+00:00 bsc 年年: needs_review, score 100.0; security not independently verified
+- 2026-11-08T09:10:30+00:00 solana DESSA: needs_review, score 100.0; security not independently verified
+- 2026-11-08T09:10:30+00:00 solana WASTED: needs_review, score 100.0; security not independently verified
+- 2026-11-08T09:10:30+00:00 solana BB84: needs_review, score 100.0; security not independently verified
+- 2026-11-08T09:10:30+00:00 solana nuLL: needs_review, score 100.0; security not independently verified
+- 2026-11-08T09:10:30+00:00 solana VETO: needs_review, score 100.0; security not independently verified
+- 2026-11-08T09:10:30+00:00 solana HEREWEGO: needs_review, score 100.0; security not independently verified
+- 2026-11-08T09:10:30+00:00 solana PIRATE: needs_review, score 100.0; security not independently verified
+- 2026-11-08T09:10:30+00:00 solana CATPAD: needs_review, score 100.0; security not independently verified
+- 2026-11-08T09:10:30+00:00 robinhood GIGATENEV: needs_review, score 100.0; security not independently verified
+- 2026-11-08T09:10:30+00:00 ethereum WASTED: needs_review, score 100.0; security not independently verified
+- 2026-11-08T09:10:30+00:00 bsc GM: needs_review, score 100.0; security not independently verified
+- 2026-11-08T09:10:30+00:00 bsc RM: needs_review, score 100.0; security not independently verified
+- 2026-11-08T09:10:30+00:00 solana ELON: needs_review, score 99.0; security not independently verified
+- 2026-11-08T09:10:30+00:00 elysium BOXA: needs_review, score 98.6; security not independently verified
+- 2026-11-08T09:10:30+00:00 robinhood MOTION: needs_review, score 82.0; security not independently verified
 
 ## V4.1 forward-only shadow evaluation (frozen rules)
 
@@ -94,18 +94,18 @@ Scores are not probabilities. BTC is a benchmark, not a matched random-signal co
 - Controls are a deterministic 20% sample of eligible watch-only assets, not matched random controls.
 - Missing quotes and delistings are separately counted; ignoring them biases returns upward.
 - 24h volume is a rolling 24h measure, not a four-hour acceleration measure.
-- Frozen predictions: 624
-- signal cohort: 403 predictions
-  - 1d: evaluated=330; missing=26; mean=-25.67%; positive=30.6%
-  - 3d: evaluated=227; missing=68; mean=-27.68%; positive=25.1%
-  - 7d: evaluated=156; missing=74; mean=-34.39%; positive=22.4%
-- control cohort: 221 predictions
-  - 1d: evaluated=191; missing=8; mean=-14.08%; positive=34.0%
-  - 3d: evaluated=142; missing=22; mean=+2.91%; positive=26.1%
-  - 7d: evaluated=92; missing=26; mean=-21.17%; positive=27.2%
+- Frozen predictions: 926
+- signal cohort: 584 predictions
+  - 1d: evaluated=523; missing=30; mean=-21.55%; positive=32.1%
+  - 3d: evaluated=417; missing=86; mean=-19.71%; positive=28.8%
+  - 7d: evaluated=298; missing=98; mean=-15.14%; positive=24.8%
+- control cohort: 342 predictions
+  - 1d: evaluated=312; missing=13; mean=-9.22%; positive=34.6%
+  - 3d: evaluated=267; missing=30; mean=-1.49%; positive=28.8%
+  - 7d: evaluated=180; missing=39; mean=-7.25%; positive=27.2%
 - Agent B market-only support does not mean contract safety; unverified remains unverified.
-- Agent A candidate / Agent B unconfirmed: 277
-- Agent A watch_only / Agent B unconfirmed: 194
-- Agent A candidate / Agent B supported_market_only: 125
-- Agent A watch_only / Agent B supported_market_only: 27
+- Agent A candidate / Agent B unconfirmed: 375
+- Agent A watch_only / Agent B unconfirmed: 288
+- Agent A candidate / Agent B supported_market_only: 208
+- Agent A watch_only / Agent B supported_market_only: 54
 - Agent A candidate / Agent B rejected: 1
